@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
-    "client": "npm run start --prefix client",
+    "client": "npm run start --prefix ../client",
     "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "author": "Katie, Anton, David",
