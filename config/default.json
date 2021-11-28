@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "jwtSecret": "#!S3cr3aT",
+  "mongoUri": "mongodb+srv://user:12345qwerty@cluster0.7j2km.mongodb.net/app?retryWrites=true&w=majority"
+}
+ 
