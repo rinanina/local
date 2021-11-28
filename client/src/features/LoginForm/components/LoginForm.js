@@ -22,6 +22,7 @@ const LoginForm = () => {
 
     const handleRegister = async () => {
         try {
+            console.log('formData', formData);
             const data = await request('/api/auth/register', 'POST', {...formData});
             console.log('data', data);
         } catch (e) {}

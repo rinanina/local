@@ -1,8 +1,4 @@
 #local
 
-#run server
-from server directory `yarn run server`
-
-
-#ren client
-from client directory `yarn run start`
+#run server and client
+from server directory `yarn run dev`
