@@ -37,5 +37,8 @@
     ]
   },
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "yarn-audit-fix": "^7.2.3"
+  }
 }
