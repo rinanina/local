@@ -32,16 +32,17 @@ router.post(
       const candidate = await User.findOne({ email });
 
       if (candidate) {
-        return res.status(400).status({ message: 'Such email already exist' });
+        return res.status(400).status({ message: 'Such email already exists' });
       }
 
-      const hashedPassword = await bcryptjs.hash(password, 1);
+      const hashedPassword = await bcryptjs.hash(password, 12);
       const user = new User({ email, password: hashedPassword });
 
       await user.save();
 
       res.status(201).json({ message: 'User created' });
     } catch (e) {
+      console.log('e', e);
       res.status(500).json({ message: 'Something went wrong, try later' });
     }
   }
@@ -51,8 +52,8 @@ router.post(
 router.post(
   '/login',
   [
-    check('email', 'Incorect email').normalizeEmail().isEmail(),
-    check('password', 'Enter ypur password').exists(),
+    check('email', 'Incorrect email').normalizeEmail().isEmail(),
+    check('password', 'Enter your password').exists(),
   ],
 
   async (req, res) => {
