@@ -1,0 +1,18 @@
+.main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.photoBox{
+    width: 568px;
+    height: 562px;
+    border: 1px solid #000000;
+}
+
+.text {
+    margin-top: 100px;
+    height: 262px;
+    width: 399px;
+
+
+}
