@@ -1,10 +1,11 @@
-import React from 'react';
-import "./Archive.css"
+import './Archive.css';
 
-export const Archive =()=>{
-    return (
-        <div>
-            <h1>Here is an Archive!</h1>
-        </div>
-    )
-}
+import React from 'react';
+
+export const Archive = () => {
+  return (
+    <div>
+      <h1>Here is an Archive!</h1>
+    </div>
+  );
+};
