@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -11,11 +11,19 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "simple-import-sort"],
+  "plugins": ["react", "simple-import-sort", "prettier"],
   "rules": {
-    "indent": ["error", "tab"],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "no-console": [
+      2,
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
+    "no-debugger": 1,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
   }
 }
