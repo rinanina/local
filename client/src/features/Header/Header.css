@@ -1,11 +1,11 @@
 .header {
-display:flex;
-justify-content: space-between;
-align-content: center;
-flex-direction: column;
+    display:flex;
+    justify-content: space-between;
+    align-content: center;
+    flex-direction: column;
 }
 
 a {
     text-decoration:none;
     font-size: 18px;
-  }
+}

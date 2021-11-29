@@ -7,7 +7,7 @@ export const Contact =()=>{
             <span>@shamievdavid</span>
             <br/>
             <span>@kunstkun</span>
-            
+
         </div>
     )
 }
