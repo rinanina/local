@@ -45,7 +45,6 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.3.0",
     "eslint-plugin-react": "^7.27.1",
     "yarn-audit-fix": "^7.2.3"
   }
