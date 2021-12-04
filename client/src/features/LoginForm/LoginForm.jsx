@@ -27,7 +27,12 @@ const LoginForm = () => {
         password: '',
       });
 
+      // TODO: is not set for login because redirect unmount current component --> make toasters global
       toast.success(response.data.message);
+
+      if (response.data.userId) {
+        navigate(Page.ARCHIVE);
+      }
     }
   }, [response]);
 
@@ -44,7 +49,6 @@ const LoginForm = () => {
 
   const handleLogin = async () => {
     await doFetch((api) => api.user.login({ ...formData }));
-    navigate(Page.ARCHIVE);
   };
 
   return (

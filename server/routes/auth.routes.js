@@ -58,7 +58,6 @@ router.post(
   async (req, res) => {
     try {
       const errors = validationResult(req);
-      console.log('errors', errors);
 
       if (errors.errors.length) {
         return res.status(400).json({
@@ -67,19 +66,15 @@ router.post(
         });
       }
 
-      console.log('req.body', req.body);
       const { email, password } = req.body;
 
       const user = await User.findOne({ email });
-
-      console.log('user', user);
 
       if (!user) {
         return res.status(400).json({ message: 'User not found.' });
       }
 
       const isPassMatch = await bcryptjs.compare(password, user.password);
-      console.log('isPassMatch', isPassMatch);
 
       if (!isPassMatch) {
         return res.status(400).json({
@@ -93,7 +88,7 @@ router.post(
         expiresIn: '1h',
       });
 
-      res.json({ token, userId: user.id });
+      res.json({ token, userId: user.id, message: 'Welcome! You are logged in.' });
     } catch (e) {
       res.status(500).json({ message: 'Something went wrong, try later' });
     }
