@@ -1,40 +1,37 @@
-import { useCallback, useState } from 'react';
+import { useState, useRef } from 'react';
+
+import api from 'utils/api';
 
 const useFetch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [response, setResponse] = useState(null);
+  const executor = useRef();
 
-  const request = useCallback(
-    async (url, method = 'GET', body = null, headers = {}) => {
-      setLoading(true);
+  // use abstraction
+  const doFetch = async (e) => {
+    executor.current = e;
 
-      try {
-        if (body) {
-          body = JSON.stringify(body);
-          headers['Content-Type'] = 'application/json';
-        }
-        const response = await fetch(url, { method, body, headers });
-        const data = await response.json();
+    setLoading(true);
 
-        if (!response.ok) {
-          throw new Error(data.message || 'Something went wrong');
-        }
+    try {
+      const response = await executor.current(api);
 
-        setLoading(false);
-
-        return data;
-      } catch (e) {
-        setLoading(false);
-        setError(e.message);
-        throw e;
+      if (response.status !== 201 && response.status !== 200) {
+        throw new Error(response.message || 'Something went wrong');
       }
-    },
-    []
-  );
+
+      setResponse(response);
+      setLoading(false);
+    } catch(error) {
+      setError(error.response.data.message);
+      setLoading(false);
+    }
+  };
 
   const clearError = () => setError(null);
 
-  return { loading, request, error, clearError };
+  return { loading, response, error, doFetch, clearError };
 };
 
 export default useFetch;

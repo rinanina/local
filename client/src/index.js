@@ -1,9 +1,10 @@
-import './styles/index.css';
-
-import { Routes } from 'features/Routes';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+
+import 'normalize.css';
+
+import { Routes } from 'features/Routes';
 
 import reportWebVitals from './reportWebVitals';
 
