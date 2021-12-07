@@ -3,27 +3,41 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended"
+  ],
+  "parser": "@babel/eslint-parser",
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+  },
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "modules": true
     },
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "requireConfigFile": false
   },
-  "plugins": ["react", "simple-import-sort", "prettier"],
+  "plugins": ["react", "simple-import-sort"],
   "rules": {
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "no-console": [
-      2,
-      {
-        "allow": ["warn", "error"]
-      }
-    ],
+    "no-console": "off",
     "no-debugger": 1,
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "off",
+    "react/prop-types": "off"
   }
 }

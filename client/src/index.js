@@ -1,18 +1,19 @@
-import './index.css';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './App';
+import 'normalize.css';
+
+import { Routes } from 'features/Routes';
+
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-		<BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <BrowserRouter>
+            <Routes />
+        </BrowserRouter>
+    </React.StrictMode>,
   document.getElementById('root')
 );
 
