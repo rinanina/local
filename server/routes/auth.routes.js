@@ -62,7 +62,7 @@ router.post(
       if (errors.errors.length) {
         return res.status(400).json({
           errors: errors.array(),
-          message: 'Incorrect login data.',
+          message: 'Password or email is invalid.',
         });
       }
 
@@ -71,14 +71,14 @@ router.post(
       const user = await User.findOne({ email });
 
       if (!user) {
-        return res.status(400).json({ message: 'User not found.' });
+        return res.status(400).json({ message: 'Password or email is invalid.' });
       }
 
       const isPassMatch = await bcryptjs.compare(password, user.password);
 
       if (!isPassMatch) {
         return res.status(400).json({
-          message: 'Incorrect login data.',
+          message: 'Password or email is invalid.',
         });
       }
 
@@ -90,7 +90,7 @@ router.post(
 
       res.json({ token, userId: user.id, message: 'Welcome! You are logged in.' });
     } catch (e) {
-      res.status(500).json({ message: 'Something went wrong, try later' });
+      res.status(500).json({ message: 'Something went wrong, try later.' });
     }
   }
 );
