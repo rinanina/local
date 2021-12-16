@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 
-export const MainBox = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-family: Roboto;
   font-size: 18px;
-  text-transform: uppercase;
-  margin-top: 36px;
-  margin-left: 77px;
-`;
 
-export const Empty = styled.div`
-width:32px;
+  button {
+    height: 22px;
+    text-transform: uppercase;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 32px;
+    }
+  }
 `;
