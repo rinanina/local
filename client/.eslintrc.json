@@ -32,9 +32,9 @@
   },
   "plugins": ["react", "simple-import-sort"],
   "rules": {
-    "linebreak-style": ["error", "unix"],
+    //"linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "always"],
+    "semi": ["error", "always"],    
     "no-console": "off",
     "no-debugger": 1,
     "simple-import-sort/exports": "off",

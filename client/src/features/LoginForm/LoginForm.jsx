@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useFetch from 'hooks/useFetch';
 import { Page } from 'features/Page';
+import { Wrapper, Form, FormRow, Input, Button } from './styled';
 
 const LoginForm = () => {
   const { loading, response, error, clearError, doFetch } = useFetch();
@@ -44,37 +45,52 @@ const LoginForm = () => {
   }, [error]);
 
   const handleRegister = async () => {
-     await doFetch((api) => api.user.register({ ...formData }));
+    await doFetch((api) => api.user.register({ ...formData }));
   };
 
   const handleLogin = async () => {
     await doFetch((api) => api.user.login({ ...formData }));
-  };
+  };  
 
   return (
     <div>
       <ToastContainer />
-      <div>Login</div>
-      <form>
-        <input
-          placeholder='Input email'
-          id='email'
-          name='email'
-          type='text'
-          onChange={handleInputChange}
-          value={formData.email}
-        />
-        <input
-          placeholder='Input password'
-          id='password'
-          name='password'
-          type='password'
-          onChange={handleInputChange}
-          value={formData.password}
-        />
-        <button disabled={loading} onClick={handleRegister}>Register</button>
-        <button disabled={loading} onClick={handleLogin}>Login</button>
-      </form>
+      <Wrapper>
+        <Form>
+          <FormRow></FormRow>
+          <FormRow>
+            <Input
+              placeholder='E-mail'
+              id='email'
+              name='email'
+              type='text'
+              onChange={handleInputChange}
+              value={formData.email}
+            />
+          </FormRow>
+          <FormRow>
+            <Input
+              placeholder='Password'
+              id='password'
+              name='password'
+              type='password'
+              onChange={handleInputChange}
+              value={formData.password}
+            />
+          </FormRow>
+          <FormRow></FormRow>
+          
+
+          <Button disabled={loading} onClick={handleRegister}>
+            Register
+          </Button>
+          <FormRow></FormRow>
+          <Button disabled={loading} onClick={handleLogin}>
+            Login
+          </Button>
+        </Form>
+        
+      </Wrapper>
     </div>
   );
 };
