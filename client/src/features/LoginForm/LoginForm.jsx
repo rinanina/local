@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useFetch from 'hooks/useFetch';
 import { Page } from 'features/Page';
+import { useAuth } from 'context/AuthContext';
 
 const LoginForm = () => {
   const { loading, response, error, clearError, doFetch } = useFetch();
@@ -12,6 +13,7 @@ const LoginForm = () => {
     password: '',
   });
   const navigate = useNavigate();
+  const auth = useAuth();
 
   const handleInputChange = (event) => {
     setFormData({
@@ -30,7 +32,8 @@ const LoginForm = () => {
       // TODO: is not set for login because redirect unmount current component --> make toasters global
       toast.success(response.data.message);
 
-      if (response.data.userId) {
+      if (response.data.userId && response.data.token) {
+        auth.login(response.data.token, response.data.userId);
         navigate(Page.ARCHIVE);
       }
     }
@@ -44,7 +47,7 @@ const LoginForm = () => {
   }, [error]);
 
   const handleRegister = async () => {
-     await doFetch((api) => api.user.register({ ...formData }));
+    await doFetch((api) => api.user.register({ ...formData }));
   };
 
   const handleLogin = async () => {

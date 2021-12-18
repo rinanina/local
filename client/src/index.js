@@ -4,16 +4,19 @@ import { BrowserRouter } from 'react-router-dom';
 
 import 'normalize.css';
 
-import { Routes } from 'features/Routes';
-
 import reportWebVitals from './reportWebVitals';
 
+import AuthContext from 'context/AuthContext';
+import { Routes } from 'features/Routes';
+
 ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Routes />
-        </BrowserRouter>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <AuthContext>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </AuthContext>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
