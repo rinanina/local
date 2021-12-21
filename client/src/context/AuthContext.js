@@ -12,8 +12,10 @@ const AuthContextInner = createContext({
   isAuth: false,
 });
 
+const initialState = { isAuth: false, token: null, userId: null };
+
 const AuthContext = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [authData, setAuthData] = useState(initialState);
 
   const login = useCallback((jwtToken, id) => {
     localStorage.setItem(
@@ -21,12 +23,16 @@ const AuthContext = ({ children }) => {
       JSON.stringify({ userId: id, token: jwtToken })
     );
 
-    setIsAuth(true);
+    setAuthData({
+      isAuth: true,
+      token: jwtToken,
+      userId: id,
+    });
   }, []);
 
   const logout = useCallback(() => {
     localStorage.removeItem(storageName);
-    setIsAuth(false);
+    setAuthData(initialState);
   }, []);
 
   useEffect(() => {
@@ -42,7 +48,7 @@ const AuthContext = ({ children }) => {
   }, []);
 
   return (
-    <AuthContextInner.Provider value={{ login, logout, isAuth }}>
+    <AuthContextInner.Provider value={{ login, logout, ...authData }}>
       {children}
     </AuthContextInner.Provider>
   );
