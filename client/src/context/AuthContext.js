@@ -8,11 +8,9 @@ import React, {
 
 const storageName = 'userData';
 
-const AuthContextInner = createContext({
-  isAuth: false,
-});
-
 const initialState = { isAuth: false, token: null, userId: null };
+
+const AuthContextInner = createContext(initialState);
 
 const AuthContext = ({ children }) => {
   const [authData, setAuthData] = useState(initialState);
