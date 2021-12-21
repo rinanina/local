@@ -6,49 +6,43 @@ import React, {
   useState,
 } from 'react';
 
-function noop() {}
 const storageName = 'userData';
 
 const AuthContextInner = createContext({
-  token: null,
-  userId: null,
-  login: noop,
-  logout: noop,
-  isAauth: false,
+  isAuth: false,
 });
 
 const AuthContext = ({ children }) => {
-  const [token, setToken] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const isAuth = !!token;
+  const [isAuth, setIsAuth] = useState(false);
 
   const login = useCallback((jwtToken, id) => {
-    setToken(jwtToken);
-    setUserId(id);
-
     localStorage.setItem(
       storageName,
       JSON.stringify({ userId: id, token: jwtToken })
     );
+
+    setIsAuth(true);
   }, []);
 
   const logout = useCallback(() => {
-    setToken(null);
-    setUserId(null);
-
     localStorage.removeItem(storageName);
+    setIsAuth(false);
   }, []);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem(storageName));
 
-    if (data && data.toke) {
-      login(data.token, data.userId);
+    if (data) {
+      const { token, userId } = data;
+
+      if (token) {
+        login(token, userId);
+      }
     }
-  }, [login]);
+  }, []);
 
   return (
-    <AuthContextInner.Provider value={{ login, logout, token, userId, isAuth }}>
+    <AuthContextInner.Provider value={{ login, logout, isAuth }}>
       {children}
     </AuthContextInner.Provider>
   );

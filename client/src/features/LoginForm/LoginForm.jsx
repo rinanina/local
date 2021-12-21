@@ -29,11 +29,13 @@ const LoginForm = () => {
         password: '',
       });
 
-      // TODO: is not set for login because redirect unmount current component --> make toasters global
-      toast.success(response.data.message);
+      const { message, token, userId } = response.data;
 
-      if (response.data.userId && response.data.token) {
-        auth.login(response.data.token, response.data.userId);
+      // TODO: is not set for login because redirect unmount current component --> make toasters global
+      toast.success(message);
+
+      if (userId && token) {
+        auth.login(token, userId);
         navigate(Page.ARCHIVE);
       }
     }
