@@ -4,7 +4,7 @@ export const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 77px;
+  padding: 0 77px;
 `;
 
 export const Title = styled.h2`

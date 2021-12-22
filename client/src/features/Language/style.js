@@ -6,8 +6,9 @@ export const Wrapper = styled.div`
   align-items: center;
   font-family: Roboto;
   font-size: 18px;
+  `;
 
-  button {
+ export const Button = styled.button`
     height: 22px;
     text-transform: uppercase;
     padding: 0;
@@ -20,5 +21,5 @@ export const Wrapper = styled.div`
     &:not(:last-child) {
       margin-right: 32px;
     }
-  }
-`;
+  `;
+

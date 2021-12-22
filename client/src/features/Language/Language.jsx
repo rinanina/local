@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { Wrapper } from './style';
+import { useLanguage } from 'context/LanguageContext';
+import { Wrapper , Button} from './style';
 
-const Language = () => (
-  <Wrapper>
-    <button>Eng</button>
-    <button>Ukr</button>
-  </Wrapper>
-);
+const Language = () => {
+ const { languages, setLanguage } = useLanguage();
+ 
+
+return (
+        <Wrapper>
+            <Button onClick={()=>{setLanguage(languages.ENG);}}>ENG</Button>
+            <Button onClick={()=>{setLanguage(languages.UKR);}}>UKR</Button>
+        </Wrapper>
+    );
+};
 
 export default Language;
