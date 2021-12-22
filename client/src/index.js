@@ -6,21 +6,24 @@ import 'normalize.css';
 
 import { Routes } from 'features/Routes';
 import { LanguageContext } from 'features/Language';
+import AuthContext from 'context/AuthContext';
 
 import GlobalStyle from './styles/global';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <>
-            <GlobalStyle />
-            <LanguageContext>
-                <BrowserRouter>
-                    <Routes />
-                </BrowserRouter>
-            </LanguageContext>
-        </>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <>
+      <GlobalStyle />
+      <LanguageContext>
+        <AuthContext>
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </AuthContext>
+      </LanguageContext>
+    </>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
