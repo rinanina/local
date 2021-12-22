@@ -33,7 +33,8 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  ${formElementStyles};;
+  ${formElementStyles};
+  cursor: pointer;
 `;
 
 
