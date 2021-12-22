@@ -5,16 +5,21 @@ import { BrowserRouter } from 'react-router-dom';
 import 'normalize.css';
 
 import { Routes } from 'features/Routes';
+import { LanguageContext } from 'features/Language';
+
+import GlobalStyle from './styles/global';
 import reportWebVitals from './reportWebVitals';
-import LanguageContext from 'context/LanguageContext';
 
 ReactDOM.render(
     <React.StrictMode>
-    <LanguageContext>
-        <BrowserRouter>
-            <Routes />
-        </BrowserRouter>
-    </LanguageContext>
+        <>
+            <GlobalStyle />
+            <LanguageContext>
+                <BrowserRouter>
+                    <Routes />
+                </BrowserRouter>
+            </LanguageContext>
+        </>
     </React.StrictMode>,
   document.getElementById('root')
 );

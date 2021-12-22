@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom';
 
 import { Navigation } from 'features/Navigation';
 
-import { Wrapper, Title } from './styled';
-import Language from 'features/Language/Language';
-
-
+import { Wrapper, Logo } from './styled';
+import Language from 'features/Language/components';
 
 const Header = () => (
   <Wrapper>
-    <Title>
+    <Logo>
       <Link to='/'>Local Stickerbook</Link>
-    </Title>
+    </Logo>
     <Navigation />
     <Language />
   </Wrapper>

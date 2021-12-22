@@ -4,9 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 import useFetch from 'hooks/useFetch';
 import { Page } from 'features/Page';
-import { Wrapper, Form, FormRow, Input, Button } from './styled';
+import { useLanguage } from 'features/Language';
+
+import { Wrapper, Form, Input, Button } from './styled';
+import { LOCALE } from '../config/locale';
 
 const LoginForm = () => {
+  const { language } = useLanguage();
   const { loading, response, error, clearError, doFetch } = useFetch();
   const [formData, setFormData] = useState({
     email: '',
@@ -53,45 +57,35 @@ const LoginForm = () => {
   };  
 
   return (
-    <div>
+    <>
       <ToastContainer />
       <Wrapper>
         <Form>
-          <FormRow></FormRow>
-          <FormRow>
-            <Input
-              placeholder='E-mail'
-              id='email'
-              name='email'
-              type='text'
-              onChange={handleInputChange}
-              value={formData.email}
-            />
-          </FormRow>
-          <FormRow>
-            <Input
-              placeholder='Password'
-              id='password'
-              name='password'
-              type='password'
-              onChange={handleInputChange}
-              value={formData.password}
-            />
-          </FormRow>
-          <FormRow></FormRow>
-          
-
+          <Input
+            placeholder={LOCALE.emailPlaceholder[language]}
+            id='email'
+            name='email'
+            type='text'
+            onChange={handleInputChange}
+            value={formData.email}
+          />
+          <Input
+            placeholder={LOCALE.passwordPlaceholder[language]}
+            id='password'
+            name='password'
+            type='password'
+            onChange={handleInputChange}
+            value={formData.password}
+          />
           <Button disabled={loading} onClick={handleRegister}>
-            Register
+            {LOCALE.registerButton[language]}
           </Button>
-          <FormRow></FormRow>
           <Button disabled={loading} onClick={handleLogin}>
-            Login
+            {LOCALE.loginButton[language]}
           </Button>
         </Form>
-        
       </Wrapper>
-    </div>
+    </>
   );
 };
 

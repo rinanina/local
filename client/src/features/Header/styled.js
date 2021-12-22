@@ -1,23 +1,25 @@
 import styled from 'styled-components';
 
+import { HEADER_HEIGHT } from 'config/sizes';
+import { reducerStyles } from 'features/Page';
+
 export const Wrapper = styled.header`
+  ${reducerStyles};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 77px;
+  height: ${HEADER_HEIGHT};
 `;
 
-export const Title = styled.h2`
+export const Logo = styled.h2`
   text-transform: uppercase;
   text-align: center;
-  font-size: 36px;
-  font-family: Roboto;
+  font-size: 28px;
   font-style: normal;
   font-weight: 400;
-  line-height: 42px;
+  line-height: 32px;
 
   a {
-    text-decoration: none;
     color: black;
   }
 `;
