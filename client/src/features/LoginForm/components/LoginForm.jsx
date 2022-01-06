@@ -5,8 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from 'hooks/useFetch';
 import { Page } from 'features/Page';
 import { useAuth } from 'context/AuthContext';
+import { useLanguage } from 'features/Language';
+
+import { Wrapper, Form, Input, Button } from './styled';
+import { LOCALE } from '../config/locale';
 
 const LoginForm = () => {
+  const { language } = useLanguage();
   const { loading, response, error, clearError, doFetch } = useFetch();
   const [formData, setFormData] = useState({
     email: '',
@@ -57,30 +62,35 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <>
       <ToastContainer />
-      <div>Login</div>
-      <form>
-        <input
-          placeholder='Input email'
-          id='email'
-          name='email'
-          type='text'
-          onChange={handleInputChange}
-          value={formData.email}
-        />
-        <input
-          placeholder='Input password'
-          id='password'
-          name='password'
-          type='password'
-          onChange={handleInputChange}
-          value={formData.password}
-        />
-        <button disabled={loading} onClick={handleRegister}>Register</button>
-        <button disabled={loading} onClick={handleLogin}>Login</button>
-      </form>
-    </div>
+      <Wrapper>
+        <Form>
+          <Input
+            placeholder={LOCALE.emailPlaceholder[language]}
+            id='email'
+            name='email'
+            type='text'
+            onChange={handleInputChange}
+            value={formData.email}
+          />
+          <Input
+            placeholder={LOCALE.passwordPlaceholder[language]}
+            id='password'
+            name='password'
+            type='password'
+            onChange={handleInputChange}
+            value={formData.password}
+          />
+          <Button disabled={loading} onClick={handleRegister}>
+            {LOCALE.registerButton[language]}
+          </Button>
+          <Button disabled={loading} onClick={handleLogin}>
+            {LOCALE.loginButton[language]}
+          </Button>
+        </Form>
+      </Wrapper>
+    </>
   );
 };
 
