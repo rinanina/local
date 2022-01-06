@@ -10,11 +10,14 @@ import Home from '../components/Home';
 import Login from '../components/Login';
 import NotFound from '../components/NotFound';
 import Publisher from '../components/Publisher';
+import CreateStickerbook from '../components/CreateStickerbook';
 
 export const Page = {
   HOME: '',
   ARCHIVE: '/archive',
   ARCHIVE_ITEM: '/archive/:id',
+  CREATE_STICKERBOOK: '/create-stickerbook',
+  CREATE_TAPE: '/create-tape',
   ARTISTS: '/artists',
   ARTIST: '/artists/:id',
   BLOG: '/blog',
@@ -28,6 +31,7 @@ export const pages = {
   [Page.HOME]: <Home />,
   [Page.ARCHIVE]: <Archive />,
   [Page.ARCHIVE_ITEM]: <ArchiveItem />,
+  [Page.CREATE_STICKERBOOK]: <CreateStickerbook />,
   [Page.ARTISTS]: <Artists />,
   [Page.ARTIST]: <Artist />,
   [Page.BLOG]: <Blog />,

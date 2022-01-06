@@ -1,13 +1,14 @@
 const { Schema, model, Types } = require('mongoose');
 
 const schema = new Schema({
-  type: { type: String, enum: ['ZINE', 'TAPE'], default: 'ZINE' },
-  status: { type: String, enum: ['DRAFT', 'PUBLISHED'], default: 'DRAFT' },
-  title: { type: String },
+  // type: { type: String, enum: ['ZINE', 'TAPE'], default: 'ZINE' }, // is it possible to have separate models for different types
+  // status: { type: String, enum: ['DRAFT', 'PUBLISHED'], default: 'DRAFT' },
+  title: { type: String, required: true },
   slides: [{ type: Types.ObjectId, ref: 'Slide' }],
+  date: { type: Date, default: Date.now }
 });
 
-module.exports = model('Edition', schema);
+module.exports = model('Zine', schema);
 
 //Edition: {
 //	id, number uniq

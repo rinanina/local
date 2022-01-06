@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Navigation } from 'features/Navigation';
 
 import { Wrapper, Logo } from './styled';
-import Language from 'features/Language/components';
+import Language from 'features/Language';
 
 const Header = () => (
   <Wrapper>

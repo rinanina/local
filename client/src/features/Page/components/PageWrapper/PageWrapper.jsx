@@ -1,9 +1,12 @@
 import React from 'react';
 
-import { Wrapper } from './styled';
+import { Wrapper, Title } from './styled';
 
-const PageWrapper = ({ children }) => (
-  <Wrapper>{children}</Wrapper>
+const PageWrapper = ({ children, title }) => (
+  <Wrapper>
+    {title && <Title>{title}</Title>}
+    {children}
+  </Wrapper>
 );
 
 export default PageWrapper;
