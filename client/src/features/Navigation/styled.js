@@ -6,7 +6,7 @@ export const Wrapper = styled.nav`
 
   a {
     &:not(:last-child) {
-      margin-right: 80px;
+      margin-right: 16px;
     }
   }
 `;

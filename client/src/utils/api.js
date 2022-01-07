@@ -6,6 +6,9 @@ const builder = (httpClient) => ({
     register: (data) => httpClient.post(Endpoint.REGISTER, data),
     login: (data) => httpClient.post(Endpoint.LOGIN, data),
   },
+  stickerbook: {
+    create: (data) => httpClient.post(Endpoint.CREATE_STICKERBOOK, data),
+  }
 });
 
 export default builder(httpClient);

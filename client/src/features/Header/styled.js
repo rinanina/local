@@ -14,10 +14,11 @@ export const Wrapper = styled.header`
 export const Logo = styled.h2`
   text-transform: uppercase;
   text-align: center;
-  font-size: 28px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
+  margin: 0;
 
   a {
     color: black;
