@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json({ extended: true }));
 
 app.use('/api/auth', require('./routes/auth.routes'));
-app.use('/api/edition', require('./routes/edition.routes'));
+app.use('/api/stickerbook', require('./routes/stickerbook.routes'));
 
 const PORT = config.get('port') || 5000;
 

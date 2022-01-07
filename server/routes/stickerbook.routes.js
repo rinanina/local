@@ -6,12 +6,12 @@ const config = require('config');
 const router = Router();
 
 const MAX_TITLE_LENGTH = 60;
-const MIN_TITLE_LENGTH = 60;
+const MIN_TITLE_LENGTH = 3;
 
-router.post('/create', auth, async (req, res) => {
+router.post('/create', async (req, res) => {
   try {
     //const baseUrl = config.get('baseUrl');
-    const { type, title, status, slides } = req.body;
+    const { title, slides } = req.body;
 
     const existing = await Zine.findOne({ title });
 
@@ -32,9 +32,7 @@ router.post('/create', auth, async (req, res) => {
     }
 
     const edition = new Zine({
-      // type, remove
       title,
-      // status, remove
       slides,
       // date add
     });
