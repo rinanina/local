@@ -1,34 +1,42 @@
 const { Router } = require('express');
 const Slide = require('../models/Slide');
-const Edition = require('../models/Edition');
+const Zine = require('../models/Zine');
 const auth = require('../middleware/auth.middleware');
 const config = require('config');
 const router = Router();
 
-const MAX_TITLE_LENGHT = 60;
+const MAX_TITLE_LENGTH = 60;
+const MIN_TITLE_LENGTH = 60;
 
 router.post('/create', auth, async (req, res) => {
   try {
     //const baseUrl = config.get('baseUrl');
     const { type, title, status, slides } = req.body;
 
-    const existing = await Edition.findOne({ title });
+    const existing = await Zine.findOne({ title });
 
     if (existing) {
       return res.status(400).json({ message: 'Title already exist' });
     }
 
-    if (title.lenght > MAX_TITLE_LENGHT) {
+    if (title.length > MAX_TITLE_LENGTH) {
       return res.status(400).json({
-        message: `Title lenght should be less than ${MAX_TITLE_LENGHT}`,
+        message: `Title length should be less than ${MAX_TITLE_LENGTH + 1}`,
       });
     }
 
-    const edition = new Edition({
-      type,
+    if (title.length < MIN_TITLE_LENGTH) {
+      return res.status(400).json({
+        message: `Title length should be more than ${MIN_TITLE_LENGTH}`,
+      });
+    }
+
+    const edition = new Zine({
+      // type, remove
       title,
-      status,
+      // status, remove
       slides,
+      // date add
     });
 
     await edition.save();
@@ -44,8 +52,8 @@ router.post('/create', auth, async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const editions = await Edition.find();
-    res.json(editions);
+    const zines = await Zine.find();
+    res.json(zines);
   } catch (e) {
     console.log('e', e);
     res
@@ -54,10 +62,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
-    const edition = await Edition.findByID(req.params.id);
-    res.json(edition);
+    const zine = await Zine.findById(req.params.id);
+    res.json(zine);
   } catch (e) {
     console.log('e', e);
     res

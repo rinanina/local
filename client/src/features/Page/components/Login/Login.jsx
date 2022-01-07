@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginForm from 'features/LoginForm';
+import LoginForm from 'features/LoginForm/components';
 
 import PageWrapper from '../PageWrapper';
 

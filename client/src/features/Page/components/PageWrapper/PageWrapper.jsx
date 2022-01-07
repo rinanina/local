@@ -1,13 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 
-const PageWrapper = ({ children }) => (
-  <Wrapper>{children}</Wrapper>
+import { Wrapper, Title } from './styled';
+
+const PageWrapper = ({ children, title }) => (
+  <Wrapper>
+    {title && <Title>{title}</Title>}
+    {children}
+  </Wrapper>
 );
 
 export default PageWrapper;
-
-const Wrapper = styled.div`
-  padding: 40px 20px;
-`;
-

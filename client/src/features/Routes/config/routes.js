@@ -6,6 +6,7 @@ const routes = [
   Page.HOME,
   Page.ARCHIVE,
   Page.ARCHIVE_ITEM,
+  Page.CREATE_STICKERBOOK,
   Page.ARTISTS,
   Page.ARTIST,
   Page.BLOG,

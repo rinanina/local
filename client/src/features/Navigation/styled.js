@@ -2,12 +2,9 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.nav`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  
+  font-size: 16px;
+
   a {
-    text-decoration: none;
-      
     &:not(:last-child) {
       margin-right: 16px;
     }
