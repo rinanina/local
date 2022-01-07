@@ -33,7 +33,7 @@ router.post('/create', auth, async (req, res) => {
 
     await edition.save();
 
-    res(201).json({ edition });
+    res.status(201).json({ edition });
   } catch (e) {
     console.log('e', e);
     res
