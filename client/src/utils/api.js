@@ -8,6 +8,7 @@ const builder = (httpClient) => ({
   },
   stickerbook: {
     create: (data) => httpClient.post(Endpoint.CREATE_STICKERBOOK, data),
+    loadAll: () => httpClient.get(Endpoint.LOAD_STICKERBOOKS),
   }
 });
 

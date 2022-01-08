@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toast';
 
 import useFetch from 'hooks/useFetch';
-import { Button, FormElement, Input } from 'components';
+import { Button, FormElement } from 'components';
 
 import schema from '../config/schema';
 
@@ -15,7 +15,12 @@ const slideData = {
 };
 
 const StickerbookForm = () => {
-  const { register, handleSubmit, formState: { errors }, control } = useForm({ resolver: yupResolver(schema) });
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+    control,
+  } = useForm({ resolver: yupResolver(schema) });
   const { response, error, clearError, doFetch } = useFetch();
 
   useEffect(() => {
@@ -34,8 +39,10 @@ const StickerbookForm = () => {
   const { fields, append, remove } = useFieldArray({ name: 'slides', control });
 
   const onSubmitHandler = async (data) => {
-    await doFetch((api) => api.stickerbook.create(data));
     console.log('data', data);
+
+    // TODO: pass date of creation
+    await doFetch((api) => api.stickerbook.create(data));
   };
 
   return (
@@ -46,7 +53,7 @@ const StickerbookForm = () => {
           <Button type='submit' text='Publish' />
         </FormElement>
         <FormElement>
-          <Input type='text' name='title' placeholder='Title' error={errors['title']?.message} {...register('title')} />
+          <input type='text' name='title' placeholder='Title' {...register('title')} />
         </FormElement>
         <div>
           {fields.map((item, index) => (
@@ -55,43 +62,43 @@ const StickerbookForm = () => {
                 name={`slides.${index}`}
                 control={control}
                 render={() => {
-                  const slideErrors = errors['slides'] && errors['slides'][index];
+                  // const slideErrors = errors['slides'] && errors['slides'][index];
 
                   return (
                     <div>
                       <FormElement>
-                        <Input
+                        <input
                           type='text'
                           name={`description-${index}`}
                           placeholder='Slide Description'
-                          error={slideErrors && slideErrors['description']?.message}
+                          // error={slideErrors && slideErrors['description']?.message}
                           {...register(`slides[${index}].description`)}
                         />
                       </FormElement>
                       <FormElement>
-                        <Input
+                        <input
                           type='text'
                           name={`artistName-${index}`}
                           placeholder='Artist Name'
-                          error={slideErrors && slideErrors['artistName']?.message}
+                          // error={slideErrors && slideErrors['artistName']?.message}
                           {...register(`slides[${index}].artistName`)}
                         />
                       </FormElement>
                       <FormElement>
-                        <Input
+                        <input
                           type='text'
                           name={`linkToPage-${index}`}
                           placeholder='Link to artist page'
-                          error={slideErrors && slideErrors['linkToPage']?.message}
+                          // error={slideErrors && slideErrors['linkToPage']?.message}
                           {...register(`slides[${index}].linkToPage`)}
                         />
                       </FormElement>
                       <FormElement>
-                        <Input
+                        <input
                           type='file'
                           name={`image-${index}`}
                           placeholder='Load image'
-                          error={slideErrors && slideErrors['image']?.message}
+                          // error={slideErrors && slideErrors['image']?.message}
                           {...register(`slides[${index}].image`)}
                         />
                       </FormElement>

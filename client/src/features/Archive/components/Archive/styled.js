@@ -2,7 +2,15 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
+`;
+
+export const Items = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 896px;
 `;
 
 export const Item = styled.div`
