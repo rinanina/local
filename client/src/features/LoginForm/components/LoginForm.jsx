@@ -6,8 +6,9 @@ import useFetch from 'hooks/useFetch';
 import { Page } from 'features/Page';
 import { useAuth } from 'context/AuthContext';
 import { useLanguage } from 'features/Language';
+import { Input, Button, FormElement } from 'components';
 
-import { Wrapper, Form, Input, Button } from './styled';
+import { Wrapper, Form } from './styled';
 import { LOCALE } from '../config/locale';
 
 const LoginForm = () => {
@@ -66,28 +67,32 @@ const LoginForm = () => {
       <ToastContainer />
       <Wrapper>
         <Form>
-          <Input
-            placeholder={LOCALE.emailPlaceholder[language]}
-            id='email'
-            name='email'
-            type='text'
-            onChange={handleInputChange}
-            value={formData.email}
-          />
-          <Input
-            placeholder={LOCALE.passwordPlaceholder[language]}
-            id='password'
-            name='password'
-            type='password'
-            onChange={handleInputChange}
-            value={formData.password}
-          />
-          <Button disabled={loading} onClick={handleRegister}>
-            {LOCALE.registerButton[language]}
-          </Button>
-          <Button disabled={loading} onClick={handleLogin}>
-            {LOCALE.loginButton[language]}
-          </Button>
+          <FormElement>
+            <Input
+              placeholder={LOCALE.emailPlaceholder[language]}
+              id='email'
+              name='email'
+              type='text'
+              onChange={handleInputChange}
+              value={formData.email}
+            />
+          </FormElement>
+          <FormElement>
+            <Input
+              placeholder={LOCALE.passwordPlaceholder[language]}
+              id='password'
+              name='password'
+              type='password'
+              onChange={handleInputChange}
+              value={formData.password}
+            />
+          </FormElement>
+          <FormElement>
+            <Button text={LOCALE.registerButton[language]} disabled={loading} onClick={handleRegister} fullWidth />
+          </FormElement>
+          <FormElement>
+            <Button text={LOCALE.loginButton[language]} disabled={loading} onClick={handleLogin} fullWidth />
+          </FormElement>
         </Form>
       </Wrapper>
     </>

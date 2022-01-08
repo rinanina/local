@@ -5,8 +5,7 @@ import StickerbookForm from 'features/StickerbookForm';
 import PageWrapper from '../PageWrapper';
 
 const CreateStickerbook = () => (
-  <PageWrapper>
-    <h1>CreateStickerbook</h1>
+  <PageWrapper title='CreateStickerbook'>
     <StickerbookForm />
   </PageWrapper>
 );

@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toast';
 
 import useFetch from 'hooks/useFetch';
+import { Button, FormElement, Input } from 'components';
 
 import schema from '../config/schema';
 
@@ -16,8 +17,6 @@ const slideData = {
 const StickerbookForm = () => {
   const { register, handleSubmit, formState: { errors }, control } = useForm({ resolver: yupResolver(schema) });
   const { response, error, clearError, doFetch } = useFetch();
-
-  console.log('errors', errors);
 
   useEffect(() => {
     if (error) {
@@ -42,30 +41,66 @@ const StickerbookForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmitHandler)}>
-        <button type="submit">Publish</button>
-        <input type='text' name='title' placeholder='Title' {...register('title')} />
-        {errors['title'] && <span>{errors['title'].message}</span>}
-        <button onClick={() => append(slideData)}>Add slide</button>
+        <FormElement>
+          <Button text='Add slide' onClick={() => append(slideData)} />
+          <Button type='submit' text='Publish' />
+        </FormElement>
+        <FormElement>
+          <Input type='text' name='title' placeholder='Title' error={errors['title']?.message} {...register('title')} />
+        </FormElement>
         <div>
           {fields.map((item, index) => (
             <div key={item.id}>
               <Controller
                 name={`slides.${index}`}
                 control={control}
-                render={() => (
-                  <div>
+                render={() => {
+                  const slideErrors = errors['slides'] && errors['slides'][index];
+
+                  return (
                     <div>
-                      <input type='text' name={`description-${index}`} placeholder='Description' {...register(`slides[${index}].description`)} />
-                      {errors['slides'] && errors['slides'][index]['description'] && <span>{errors['slides'][index]['description'].message}</span>}
-                      <input type='text' name={`artistName-${index}`} placeholder='Name' {...register(`slides[${index}].artistName`)} />
-                      {errors['slides'] && errors['slides'][index]['artistName'] && <span>{errors['slides'][index]['artistName'].message}</span>}
-                      <input type='text' name={`linkToPage-${index}`} placeholder='Link' {...register(`slides[${index}].linkToPage`)} />
-                      {errors['slides'] && errors['slides'][index]['artistName'] && <span>{errors['slides'][index]['artistName'].message}</span>}
-                      <input type='file' name={`image-${index}`} {...register(`slides[${index}].image`)} />
+                      <FormElement>
+                        <Input
+                          type='text'
+                          name={`description-${index}`}
+                          placeholder='Slide Description'
+                          error={slideErrors && slideErrors['description']?.message}
+                          {...register(`slides[${index}].description`)}
+                        />
+                      </FormElement>
+                      <FormElement>
+                        <Input
+                          type='text'
+                          name={`artistName-${index}`}
+                          placeholder='Artist Name'
+                          error={slideErrors && slideErrors['artistName']?.message}
+                          {...register(`slides[${index}].artistName`)}
+                        />
+                      </FormElement>
+                      <FormElement>
+                        <Input
+                          type='text'
+                          name={`linkToPage-${index}`}
+                          placeholder='Link to artist page'
+                          error={slideErrors && slideErrors['linkToPage']?.message}
+                          {...register(`slides[${index}].linkToPage`)}
+                        />
+                      </FormElement>
+                      <FormElement>
+                        <Input
+                          type='file'
+                          name={`image-${index}`}
+                          placeholder='Load image'
+                          error={slideErrors && slideErrors['image']?.message}
+                          {...register(`slides[${index}].image`)}
+                        />
+                      </FormElement>
+                      <FormElement>
+                        <Button text='Delete' onClick={() => remove(index)} />
+                      </FormElement>
                     </div>
-                    <button onClick={() => remove(index)}>Delete</button>
-                  </div>
-                )}
+                  );
+                }}
               />
             </div>
           ))}

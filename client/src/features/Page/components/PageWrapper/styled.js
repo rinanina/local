@@ -18,5 +18,15 @@ export const Title = styled.h2`
   line-height: 26px;
   text-transform: uppercase;
   text-align: center;
+`;
+
+export const Button = styled.span`
+  margin-left: 16px;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 32px;
 `;
