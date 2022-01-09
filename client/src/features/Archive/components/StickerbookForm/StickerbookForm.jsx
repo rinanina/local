@@ -72,7 +72,7 @@ const StickerbookForm = ({ data }) => {
           <Button type='submit' text='Publish' />
         </FormElement>
         <FormElement>
-          <input type='text' defaultValue={values.title} name='title' placeholder='Title' {...register('title')} />
+          <input type='text' defaultValue={values?.title} name='title' placeholder='Title' {...register('title')} />
         </FormElement>
         <div>
           {fields.map((item, index) => (
@@ -89,7 +89,7 @@ const StickerbookForm = ({ data }) => {
                         <textarea
                           name={`description-${index}`}
                           placeholder='Slide Description'
-                          defaultValue={data.slides[index].description}
+                          defaultValue={data?.slides[index]?.description}
                           // error={slideErrors && slideErrors['description']?.message}
                           {...register(`slides[${index}].description`)}
                         />
