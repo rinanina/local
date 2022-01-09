@@ -13,7 +13,7 @@ import { LOCALE } from '../config/locale';
 
 const LoginForm = () => {
   const { language } = useLanguage();
-  const { loading, response, error, clearError, doFetch } = useFetch();
+  const {  response, error, clearError, doFetch } = useFetch();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,6 +22,7 @@ const LoginForm = () => {
   const auth = useAuth();
 
   const handleInputChange = (event) => {
+    console.log('handleInputChange');
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -54,11 +55,15 @@ const LoginForm = () => {
     }
   }, [error]);
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault();
+
     await doFetch((api) => api.user.register({ ...formData }));
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
     await doFetch((api) => api.user.login({ ...formData }));
   };
 
@@ -88,10 +93,10 @@ const LoginForm = () => {
             />
           </FormElement>
           <FormElement>
-            <Button text={LOCALE.registerButton[language]} disabled={loading} onClick={handleRegister} fullWidth />
+            <Button text={LOCALE.registerButton[language]} onClick={handleRegister} fullWidth />
           </FormElement>
           <FormElement>
-            <Button text={LOCALE.loginButton[language]} disabled={loading} onClick={handleLogin} fullWidth />
+            <Button text={LOCALE.loginButton[language]} onClick={handleLogin} fullWidth />
           </FormElement>
         </Form>
       </Wrapper>
