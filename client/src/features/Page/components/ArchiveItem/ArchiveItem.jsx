@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { Stickerbook } from 'features/Archive';
+
 import PageWrapper from '../PageWrapper';
 
 const Archive = () => (
   <PageWrapper>
-    <h1>Here is an Archive!</h1>
+    <Stickerbook />
   </PageWrapper>
 );
 

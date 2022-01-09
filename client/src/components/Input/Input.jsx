@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { SILVER_GREY, ERROR } from 'config/colors';
 
-const Input = ({ placeholder, id, name, type, onChange, value, error, ...rest }) => (
+const Input = ({ placeholder, id, name, type, onChange, value, defaultValue, error, ...rest }) => (
   <Wrapper>
     <Element
       id={id}
@@ -12,6 +12,7 @@ const Input = ({ placeholder, id, name, type, onChange, value, error, ...rest })
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      defaultValue={defaultValue}
       {...rest}
     />
     {error && <Error>{error}</Error>}

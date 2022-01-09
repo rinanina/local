@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Archive from 'features/Archive';
-import SelectTypeModal from 'features/SelectType';
+import { SelectTypeModal } from 'features/Archive';
 import { useAuth } from 'context/AuthContext';
 import Button from 'components/Button';
 

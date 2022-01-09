@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { SILVER_GREY, ERROR } from 'config/colors';
 
-const Textarea = ({ placeholder, id, name, onChange, value, error, ...rest }) => (
+const Textarea = ({ placeholder, id, name, onChange, value, defaultValue, error, ...rest }) => (
   <Wrapper>
     <Element
       id={id}
@@ -11,6 +11,7 @@ const Textarea = ({ placeholder, id, name, onChange, value, error, ...rest }) =>
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      defaultValue={defaultValue}
       {...rest}
     />
     {error && <Error>{error}</Error>}

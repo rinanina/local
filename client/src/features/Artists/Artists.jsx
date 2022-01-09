@@ -2,10 +2,12 @@ import React, { useEffect, useState }  from 'react';
 
 import { List } from 'components';
 import main from 'assets/main.png';
+import { Page } from 'features/Page';
 
 const mockedArtist = {
   title: 'Artist Name',
   image: main,
+  _id: 278464756859859690,
 };
 
 const mockedArtists = [mockedArtist, mockedArtist, mockedArtist, mockedArtist, mockedArtist];
@@ -33,10 +35,8 @@ const Artists = () => {
   //   }
   // }, [error, response]);
 
-  console.log('data', data);
-
   return (
-    <List data={data} loading={false} />
+    <List data={data} loading={false} page={Page.ARTISTS} />
   );
 };
 
