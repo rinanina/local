@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import api from 'utils/api';
 
 const useFetch = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [response, setResponse] = useState(null);
   const executor = useRef();

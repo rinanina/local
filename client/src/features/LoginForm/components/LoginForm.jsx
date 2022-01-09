@@ -6,13 +6,14 @@ import useFetch from 'hooks/useFetch';
 import { Page } from 'features/Page';
 import { useAuth } from 'context/AuthContext';
 import { useLanguage } from 'features/Language';
+import { Input, Button, FormElement } from 'components';
 
-import { Wrapper, Form, Input, Button } from './styled';
+import { Wrapper, Form } from './styled';
 import { LOCALE } from '../config/locale';
 
 const LoginForm = () => {
   const { language } = useLanguage();
-  const { loading, response, error, clearError, doFetch } = useFetch();
+  const {  response, error, clearError, doFetch } = useFetch();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,6 +22,7 @@ const LoginForm = () => {
   const auth = useAuth();
 
   const handleInputChange = (event) => {
+    console.log('handleInputChange');
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -53,11 +55,15 @@ const LoginForm = () => {
     }
   }, [error]);
 
-  const handleRegister = async () => {
+  const handleRegister = async (event) => {
+    event.preventDefault();
+
     await doFetch((api) => api.user.register({ ...formData }));
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
     await doFetch((api) => api.user.login({ ...formData }));
   };
 
@@ -66,28 +72,32 @@ const LoginForm = () => {
       <ToastContainer />
       <Wrapper>
         <Form>
-          <Input
-            placeholder={LOCALE.emailPlaceholder[language]}
-            id='email'
-            name='email'
-            type='text'
-            onChange={handleInputChange}
-            value={formData.email}
-          />
-          <Input
-            placeholder={LOCALE.passwordPlaceholder[language]}
-            id='password'
-            name='password'
-            type='password'
-            onChange={handleInputChange}
-            value={formData.password}
-          />
-          <Button disabled={loading} onClick={handleRegister}>
-            {LOCALE.registerButton[language]}
-          </Button>
-          <Button disabled={loading} onClick={handleLogin}>
-            {LOCALE.loginButton[language]}
-          </Button>
+          <FormElement>
+            <Input
+              placeholder={LOCALE.emailPlaceholder[language]}
+              id='email'
+              name='email'
+              type='text'
+              onChange={handleInputChange}
+              value={formData.email}
+            />
+          </FormElement>
+          <FormElement>
+            <Input
+              placeholder={LOCALE.passwordPlaceholder[language]}
+              id='password'
+              name='password'
+              type='password'
+              onChange={handleInputChange}
+              value={formData.password}
+            />
+          </FormElement>
+          <FormElement>
+            <Button text={LOCALE.registerButton[language]} onClick={handleRegister} fullWidth />
+          </FormElement>
+          <FormElement>
+            <Button text={LOCALE.loginButton[language]} onClick={handleLogin} fullWidth />
+          </FormElement>
         </Form>
       </Wrapper>
     </>

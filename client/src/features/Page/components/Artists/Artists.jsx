@@ -1,39 +1,23 @@
 import React from 'react';
 
-import useFetch from 'hooks/useFetch';
+import Artists from 'features/Artists';
+import { useAuth } from 'context/AuthContext';
+import { Button } from 'components';
 
 import PageWrapper from '../PageWrapper';
-import { Wrapper, Content } from './styled';
 
-const Artists = () => {
-  const { doFetch } = useFetch();
+const ArtistsPage = () => {
+  const { isAuth } = useAuth();
 
-  const sendRequest = () => {
-    doFetch((api) =>
-      api.edition.create({
-        type: 'ZINE',
-        title: 'some title',
-        status: 'DRAFT',
-      })
-    );
+  const handleCreateClick = () => {
+    console.log('Create artist');
   };
 
   return (
-    <PageWrapper>
-      <Wrapper>
-        <Content>
-          <p>
-            The actual catalogue of visual archives represents a caleidoscopic
-            flow of metamodernistic visions, routine manifesto of everydayness
-            and vertigo of devalued meanings. It’s an ever-present grotesque of
-            surrounding reality transferring beauty from yesterday’s tomorrow
-            towards today’s future.
-          </p>
-          <button onClick={sendRequest}>Send request</button>
-        </Content>
-      </Wrapper>
+    <PageWrapper title='Artists' renderButton={() => (isAuth ? <Button text='Add new artist' onClick={handleCreateClick} /> : null)} >
+      <Artists />
     </PageWrapper>
   );
 };
 
-export default Artists;
+export default ArtistsPage;

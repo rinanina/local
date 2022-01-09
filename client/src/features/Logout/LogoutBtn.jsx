@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
+import { Button } from 'components';
 import { useAuth } from 'context/AuthContext';
 
 import { Page } from '../Page';
@@ -18,13 +18,8 @@ const LogoutBtn = () => {
   };
 
   return (
-    <Wrapper onClick={logoutHandler}>Logout</Wrapper>
+    <Button text='Logout' onClick={logoutHandler} />
   );
 };
-
-export const Wrapper = styled.button`
-  cursor: pointer;
-  box-shadow: none;
-`;
 
 export default LogoutBtn;

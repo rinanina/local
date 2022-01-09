@@ -1,40 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState }  from 'react';
+import { toast } from 'react-toast';
 
-import main from 'assets/main.png';
-import { useAuth } from 'context/AuthContext';
+import useFetch from 'hooks/useFetch';
+import { List } from 'components';
+import { Page } from 'features/Page';
+import zine1 from 'assets/zine1.PNG';
+import zine2 from 'assets/zine2.jpg';
 
-import SelectTypeModal from '../SelectTypeModal';
-import { AddButton, Wrapper, Item, Image, Title } from './styled';
+const mockedSlide1 = {
+  description: 'Slide description some looooong text, Slide description some looooong text, Slide description some looooong text',
+  linkToPage: 'someLink',
+  artistName: 'Artist Name',
+  image: zine1,
+};
+
+const mockedSlide2 = {
+  description: 'Slide description some looooong text, Slide description some looooong text, Slide description some looooong text',
+  linkToPage: 'someLink',
+  artistName: 'Artist Name',
+  image: zine2,
+};
+
+const mockedSlides1 = [mockedSlide1, mockedSlide1, mockedSlide1];
+
+const mockedSlides2 = [mockedSlide2, mockedSlide2, mockedSlide2];
+
+// TODO: set image as first slides image on be
+const getDataWithMockedSlides = (data) => data?.map((item, index) => {
+  const mockedSlides = (((index + 1) % 2) !== 0) ? mockedSlides1 : mockedSlides2;
+  return ({...item, slides: mockedSlides, image: mockedSlides[0].image});
+});
 
 const Archive = () => {
-  const { isAuth } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const { loading, response, error, clearError, doFetch } = useFetch();
+  const [data, setData] = useState();
 
-  const handleCreateClick = (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    doFetch((api) => api.stickerbooks.loadAll());
+  }, []);
 
-    setIsOpen(true);
-  };
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      clearError();
+    }
 
-  const handleModalClose = () => {
-    setIsOpen(false);
-  };
+    if (response) {
+      setData(response.data);
+    }
+  }, [error, response]);
+
+  console.log('data', getDataWithMockedSlides(data));
 
   return (
-    <>
-      <SelectTypeModal isOpen={isOpen} onClose={handleModalClose} />
-      {isAuth && <AddButton onClick={handleCreateClick}>Add new</AddButton>}
-      <Wrapper>
-        <Item>
-          <Image src={main} alt='Local Stickerbook 2'/>
-          <Title>Local Stickerbook #2</Title>
-        </Item>
-        <Item>
-          <Image src={main} alt='Local Stickerbook 1'/>
-          <Title>Local Stickerbook #1</Title>
-        </Item>
-      </Wrapper>
-    </>
+    <List data={getDataWithMockedSlides(data)} loading={loading} page={Page.ARCHIVE} />
   );
 };
 

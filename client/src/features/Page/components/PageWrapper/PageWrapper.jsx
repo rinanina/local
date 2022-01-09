@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Wrapper, Title } from './styled';
+import PageTitle from '../PageTitle';
+import { Wrapper } from './styled';
 
-const PageWrapper = ({ children, title }) => (
+const PageWrapper = ({ children, title, renderButton }) => (
   <Wrapper>
-    {title && <Title>{title}</Title>}
+    <PageTitle title={title} renderButton={renderButton}/>
     {children}
   </Wrapper>
 );

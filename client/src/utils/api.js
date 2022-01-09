@@ -6,8 +6,20 @@ const builder = (httpClient) => ({
     register: (data) => httpClient.post(Endpoint.REGISTER, data),
     login: (data) => httpClient.post(Endpoint.LOGIN, data),
   },
-  stickerbook: {
+  stickerbooks: {
     create: (data) => httpClient.post(Endpoint.CREATE_STICKERBOOK, data),
+    loadAll: () => httpClient.get(Endpoint.LOAD_STICKERBOOKS),
+    loadOne: (id) => httpClient.get(`${Endpoint.LOAD_STICKERBOOKS}/${id}`)
+  },
+  artists: {
+    create: (data) => httpClient.post(Endpoint.CREATE_ARTIST, data),
+    loadAll: () => httpClient.get(Endpoint.LOAD_ARTISTS),
+    loadOne: (id) => httpClient.get(`${Endpoint.LOAD_ARTISTS}/${id}`)
+  },
+  posts: {
+    create: (data) => httpClient.post(Endpoint.CREATE_POST, data),
+    loadAll: () => httpClient.get(Endpoint.LOAD_POSTS),
+    loadOne: (id) => httpClient.get(`${Endpoint.LOAD_POSTS}/${id}`)
   }
 });
 

@@ -8,7 +8,7 @@ const router = Router();
 const MAX_TITLE_LENGTH = 60;
 const MIN_TITLE_LENGTH = 3;
 
-router.post('/create', async (req, res) => {
+router.post('/create', auth, async (req, res) => {
   try {
     //const baseUrl = config.get('baseUrl');
     const { title, slides } = req.body;
@@ -30,6 +30,8 @@ router.post('/create', async (req, res) => {
         message: `Title length should be more than ${MIN_TITLE_LENGTH}`,
       });
     }
+
+    // TODO: validate slides
 
     const edition = new Zine({
       title,

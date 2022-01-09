@@ -1,12 +1,11 @@
 import React from 'react';
 
-import StickerbookForm from 'features/StickerbookForm';
+import { StickerbookForm } from 'features/Archive';
 
 import PageWrapper from '../PageWrapper';
 
 const CreateStickerbook = () => (
-  <PageWrapper>
-    <h1>CreateStickerbook</h1>
+  <PageWrapper title='Create Stickerbook'>
     <StickerbookForm />
   </PageWrapper>
 );
