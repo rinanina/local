@@ -19,6 +19,7 @@ export const Item = styled.div`
   align-items: center;
   cursor: pointer;
   padding: 0 24px;
+  margin-bottom: 24px;
 `;
 
 export const Title = styled.h3`

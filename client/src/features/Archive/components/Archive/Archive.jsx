@@ -1,20 +1,29 @@
 import React, { useEffect, useState }  from 'react';
 import { toast } from 'react-toast';
 
-import main from 'assets/main.png';
 import useFetch from 'hooks/useFetch';
-import { Loading } from 'components';
+import { List } from 'components';
+import main from 'assets/main.png';
 
-import { Wrapper, Items, Item, Image, Title } from './styled';
+const mockedSlide = {
+  description: 'Slide description some looooong text, Slide description some looooong text, Slide description some looooong text',
+  linkToPage: 'someLink',
+  artistName: 'Artist Name',
+  image: main,
+};
+
+const mockedSlides = [mockedSlide, mockedSlide, mockedSlide];
+
+// TODO: set image as first slides image on be
+const getDataWithMockedSlides = (data) => data?.map((item) => ({...item, slides: mockedSlides, image: mockedSlides[0].image}));
 
 const Archive = () => {
   const { loading, response, error, clearError, doFetch } = useFetch();
   const [data, setData] = useState();
 
   useEffect(() => {
-    doFetch((api) => api.stickerbook.loadAll());
+    doFetch((api) => api.stickerbooks.loadAll());
   }, []);
-
 
   useEffect(() => {
     if (error) {
@@ -27,22 +36,10 @@ const Archive = () => {
     }
   }, [error, response]);
 
-  console.log('data', data);
+  console.log('data', getDataWithMockedSlides(data));
 
   return (
-    <Wrapper>
-      {loading && <Loading /> }
-      {!data?.length ? <div>empty</div> : (
-        <Items>
-          {data.map((item) => (
-            <Item key={item._id}>
-              <Image src={main} alt={item.title} />
-              <Title>{item.title}</Title>
-            </Item>
-          ))}
-        </Items>
-      )}
-    </Wrapper>
+    <List data={getDataWithMockedSlides(data)} loading={loading} />
   );
 };
 

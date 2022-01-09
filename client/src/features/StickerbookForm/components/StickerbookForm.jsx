@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useForm, useFieldArray, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toast';
@@ -38,11 +38,12 @@ const StickerbookForm = () => {
 
   const { fields, append, remove } = useFieldArray({ name: 'slides', control });
 
+  // TODO: fix so data will be send only on submit and not slide add
   const onSubmitHandler = async (data) => {
+    console.log('onSubmitHandler');
     console.log('data', data);
 
-    // TODO: pass date of creation
-    await doFetch((api) => api.stickerbook.create(data));
+    await doFetch((api) => api.stickerbooks.create(data));
   };
 
   return (
@@ -50,6 +51,8 @@ const StickerbookForm = () => {
       <form onSubmit={handleSubmit(onSubmitHandler)}>
         <FormElement>
           <Button text='Add slide' onClick={() => append(slideData)} />
+        </FormElement>
+        <FormElement>
           <Button type='submit' text='Publish' />
         </FormElement>
         <FormElement>
@@ -67,8 +70,7 @@ const StickerbookForm = () => {
                   return (
                     <div>
                       <FormElement>
-                        <input
-                          type='text'
+                        <textarea
                           name={`description-${index}`}
                           placeholder='Slide Description'
                           // error={slideErrors && slideErrors['description']?.message}

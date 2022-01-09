@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
 const schema = Yup.object().shape({
-  title: Yup.string(),
-  slides: Yup.array().of(
+  title: Yup.string(), // TODO: make it required
+  slides: Yup.array().of( // TODO: make one item required
     Yup.object().shape({
       description: Yup.string(),
       artistName: Yup.string(),

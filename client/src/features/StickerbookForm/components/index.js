@@ -1,1 +1,1 @@
-export { default } from './StickerbooForm';
+export { default } from './StickerbookForm';
