@@ -1,16 +1,23 @@
 import React from 'react';
 
-import PageWrapper from '../PageWrapper';
-import Anton from './img/artist.jpg';
-import { Wrapper, Image } from './styled';
+import Posts from 'features/Posts';
+import { useAuth } from 'context/AuthContext';
+import { Button } from 'components';
 
-const Blog = () => (
-  <PageWrapper>
-    <Wrapper>
-      <div>Why do we use it? Text</div>
-      <Image src={Anton} alt='Anton' />
-    </Wrapper>
-  </PageWrapper>
-);
+import PageWrapper from '../PageWrapper';
+
+const Blog = () => {
+  const { isAuth } = useAuth();
+
+  const handleCreateClick = () => {
+    console.log('Create post');
+  };
+
+  return (
+    <PageWrapper title='Blog' renderButton={() => (isAuth ? <Button text='Add new post' onClick={handleCreateClick} /> : null)}>
+      <Posts />
+    </PageWrapper>
+  );
+};
 
 export default Blog;

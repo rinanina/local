@@ -3,13 +3,13 @@ import { toast } from 'react-toast';
 
 import useFetch from 'hooks/useFetch';
 import { List } from 'components';
-import main from 'assets/main.png';
+import zine2 from 'assets/zine2.jpg';
 
 const mockedSlide = {
   description: 'Slide description some looooong text, Slide description some looooong text, Slide description some looooong text',
   linkToPage: 'someLink',
   artistName: 'Artist Name',
-  image: main,
+  image: zine2,
 };
 
 const mockedSlides = [mockedSlide, mockedSlide, mockedSlide];

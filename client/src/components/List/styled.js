@@ -10,7 +10,7 @@ export const Items = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  max-width: 896px;
+  max-width: 880px;
 `;
 
 export const Item = styled.div`
@@ -20,6 +20,7 @@ export const Item = styled.div`
   cursor: pointer;
   padding: 0 24px;
   margin-bottom: 24px;
+  max-width: 440px;
 `;
 
 export const Title = styled.h3`

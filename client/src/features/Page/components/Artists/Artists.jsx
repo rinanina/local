@@ -14,7 +14,7 @@ const ArtistsPage = () => {
   };
 
   return (
-    <PageWrapper title='Artists' renderButton={() => (isAuth ? <Button text='Add new' onClick={handleCreateClick} /> : null)} >
+    <PageWrapper title='Artists' renderButton={() => (isAuth ? <Button text='Add new artist' onClick={handleCreateClick} /> : null)} >
       <Artists />
     </PageWrapper>
   );
